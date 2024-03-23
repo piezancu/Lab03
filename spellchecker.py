@@ -5,23 +5,24 @@ import multiDictionary as md
 class SpellChecker:
 
     def __init__(self):
+        self.multi_dizionario = md.MultiDictionary()
 
 
     def handleSentence(self, txtIn, language):
         tempo_in_l = time.time()
-        lista_parole_rw = md.MultiDictionary.searchWordLinear(txtIn, language)
+        lista_parole_rw1 = self.multi_dizionario.searchWordLinear(txtIn, language)
         tempo_fin_l = time.time()
         tempo_l_impiegato = tempo_fin_l - tempo_in_l
-        for parola in lista_parole_rw:
-            if parola.corretta:
+        for parola in lista_parole_rw1:
+            if not parola.corretta:
                 print(parola)
         print(tempo_l_impiegato)
         tempo_in_d = time.time()
-        lista_parole_rw = md.MultiDictionary.searchWordDichotomic(txtIn, language)
+        lista_parole_rw2 = self.multi_dizionario.searchWordDichotomic(txtIn, language)
         tempo_fin_d = time.time()
         tempo_d_impiegato = tempo_fin_d - tempo_in_d
-        for parola in lista_parole_rw:
-            if parola.corretta:
+        for parola in lista_parole_rw2:
+            if not parola.corretta:
                 print(parola)
         print(tempo_d_impiegato)
 
